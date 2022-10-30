@@ -1,4 +1,5 @@
 import pygame
+import png
 
 
 class Screen:
@@ -41,3 +42,11 @@ class Screen:
                                  pygame.Rect(x * self.char_width, y * self.char_height, self.char_width,
                                              self.char_height))
         pygame.display.update()
+
+    def save_palette(self, filename):
+        pixels = []
+        for (r, g, b) in self.palette:
+            pixels.append(r)
+            pixels.append(g)
+            pixels.append(b)
+        png.from_array([pixels], "RGB").save(filename)
